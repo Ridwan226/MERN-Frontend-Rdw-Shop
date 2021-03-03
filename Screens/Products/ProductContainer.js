@@ -8,7 +8,7 @@ import SearchProduct from "./SearchProduct";
 const data = require("../../assets/data/products.json");
 const productCategories = require("../../assets/data/categories.json");
 var { height } = Dimensions.get("window");
-const ProductContainer = () => {
+const ProductContainer = (props) => {
   const [product, setProduct] = useState([]);
   const [productFilters, setProductFilters] = useState([]);
   const [focus, setFocus] = useState();
@@ -76,7 +76,10 @@ const ProductContainer = () => {
         </Item>
       </Header>
       {focus == true ? (
-        <SearchProduct productsFiltred={productFilters} />
+        <SearchProduct
+          productsFiltred={productFilters}
+          navigation={props.navigation}
+        />
       ) : (
         <ScrollView>
           <View>
@@ -95,7 +98,13 @@ const ProductContainer = () => {
             {productsCtg.length > 0 ? (
               <View style={styles.listConteiner}>
                 {productsCtg.map((item) => {
-                  return <ProductList key={item.id} item={item} />;
+                  return (
+                    <ProductList
+                      key={item.id}
+                      item={item}
+                      navigation={props.navigation}
+                    />
+                  );
                 })}
               </View>
             ) : (
