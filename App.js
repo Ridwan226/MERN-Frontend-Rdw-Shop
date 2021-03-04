@@ -5,6 +5,9 @@ import ProductContainer from "./Screens/Products/ProductContainer";
 import Header from "./Shared/Header";
 import { NavigationContainer } from "@react-navigation/native";
 
+// redux
+import { Provider } from "react-redux";
+
 // Navigation Main
 import Main from "./Navigator/Main";
 

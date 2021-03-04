@@ -1,6 +1,13 @@
-import { Container } from "native-base";
+import { Container, H1, Left, Right } from "native-base";
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+} from "react-native";
 
 const SingelProduct = (props) => {
   const [item, setItem] = useState(props.route.params.item);
@@ -20,7 +27,20 @@ const SingelProduct = (props) => {
             style={styles.image}
           />
         </View>
+        <View style={styles.contentContainer}>
+          <H1 style={styles.contenHeader}>{item.name}</H1>
+          <Text style={styles.contentText}>{item.brand}</Text>
+        </View>
+        {/** To Do Description Rich Decription  */}
       </ScrollView>
+      <View style={styles.buttomContainer}>
+        <Left>
+          <Text style={styles.price}>${item.price}</Text>
+        </Left>
+        <Right>
+          <Button title="Add" />
+        </Right>
+      </View>
     </Container>
   );
 };
@@ -40,5 +60,31 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 250,
+  },
+  contentContainer: {
+    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  contenHeader: {
+    fontWeight: "bold",
+    marginBottom: 21,
+  },
+  contentText: {
+    fontSize: 19,
+    fontWeight: "bold",
+    marginBottom: 21,
+  },
+  buttomContainer: {
+    flexDirection: "row",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    backgroundColor: "white",
+  },
+  price: {
+    fontSize: 24,
+    margin: 20,
+    color: "red",
   },
 });
