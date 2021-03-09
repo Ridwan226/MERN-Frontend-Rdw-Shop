@@ -4,6 +4,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import ProductContainer from "../Screens/Products/ProductContainer";
 import HomeNavigator from "./HomeNavigator";
 import Cart from "../Screens/Cart/Cart";
+import { View } from "react-native";
+import CartIcon from "../Shared/CartIcon";
 
 const Tab = createBottomTabNavigator();
 
@@ -36,7 +38,10 @@ const Main = () => {
         component={Cart}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon name="shopping-cart" color={color} size={30} />
+            <View>
+              <Icon name="shopping-cart" color={color} size={30} />
+              <CartIcon />
+            </View>
           ),
         }}
       />
