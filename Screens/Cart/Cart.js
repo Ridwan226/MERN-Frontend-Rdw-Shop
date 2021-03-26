@@ -6,9 +6,9 @@ import {
   ListItem,
   Right,
   Thumbnail,
-} from "native-base";
-import Icon from "react-native-vector-icons/FontAwesome";
-import React from "react";
+} from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import React from 'react';
 import {
   Button,
   Dimensions,
@@ -16,14 +16,14 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
-import { connect } from "react-redux";
-import * as actions from "../../redux/action/cartAction";
+} from 'react-native';
+import {connect} from 'react-redux';
+import * as actions from '../../redux/action/cartAction';
 
-import { SwipeListView } from "react-native-swipe-list-view";
-import CartItem from "./CartItem";
+import {SwipeListView} from 'react-native-swipe-list-view';
+import CartItem from './CartItem';
 
-var { height, width } = Dimensions.get("window");
+var {height, width} = Dimensions.get('window');
 
 const Cart = (props) => {
   var total = 0;
@@ -36,7 +36,7 @@ const Cart = (props) => {
     <>
       {props.cartItems.length ? (
         <Container>
-          <H1 style={{ alignSelf: "center" }}>Cart</H1>
+          <H1 style={{alignSelf: 'center'}}>Cart</H1>
           <SwipeListView
             data={props.cartItems}
             renderItem={(data) => <CartItem item={data} />}
@@ -44,8 +44,7 @@ const Cart = (props) => {
               <View style={styles.hiddenContainer}>
                 <TouchableOpacity
                   style={styles.hiddenButton}
-                  onPress={() => props.removeFromCart(data.item)}
-                >
+                  onPress={() => props.removeFromCart(data.item)}>
                   <Icon name="trash" color={`white`} size={30} />
                 </TouchableOpacity>
               </View>
@@ -67,7 +66,10 @@ const Cart = (props) => {
               <Button title="Clear" onPress={() => props.clearCart()} />
             </Right>
             <Right>
-              <Button title="cekOut" onPress={() => {}} />
+              <Button
+                title="cekOut"
+                onPress={() => props.navigation.navigate('Checkout')}
+              />
             </Right>
           </View>
         </Container>
@@ -82,7 +84,7 @@ const Cart = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { cartItems } = state;
+  const {cartItems} = state;
   return {
     cartItems: cartItems,
   };
@@ -99,32 +101,32 @@ export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 
 const styles = StyleSheet.create({
   emptyConteiner: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     height: height,
   },
   bottomContainer: {
-    flexDirection: "row",
-    position: "absolute",
+    flexDirection: 'row',
+    position: 'absolute',
     bottom: 0,
     left: 0,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     elevation: 20,
   },
   price: {
     fontSize: 18,
     margin: 20,
-    color: "red",
+    color: 'red',
   },
   hiddenContainer: {
     flex: 1,
-    justifyContent: "center",
-    flexDirection: "row",
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
   hiddenButton: {
-    backgroundColor: "red",
-    justifyContent: "center",
-    alignItems: "flex-end",
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
     paddingRight: 10,
     height: 70,
     width: width / 1.2,
