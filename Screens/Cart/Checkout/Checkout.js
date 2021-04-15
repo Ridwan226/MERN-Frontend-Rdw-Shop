@@ -20,22 +20,26 @@ const Checkout = (props) => {
   useEffect(() => {
     setOrderItems(props.cartItems);
 
-    return setOrderItems();
+    return () => {
+      setOrderItems();
+    };
   }, []);
+
+  console.log('data items', orderItems);
 
   const checkOut = () => {
     let order = {
       city,
       country,
       dateOrder: Date.now(),
-      orderItems,
+      orderItems: orderItems,
       phone,
       shippingAddress1: address,
       shippingAddress2: address2,
       zip,
     };
 
-    props.navigation.navigate('Payment', {order: order});
+    props.navigation.navigate('Payment', {order});
   };
 
   return (
@@ -55,13 +59,12 @@ const Checkout = (props) => {
           placeholder={'Shipping Address 1'}
           name={'ShippingAddress1'}
           value={address}
-          keyboardType={'numeric'}
           onChangeText={(text) => setAddress(text)}
         />
         <Input
           placeholder={'Shipping Address 2'}
           name={'ShippingAddress2'}
-          value={address}
+          value={address2}
           onChangeText={(text) => setAddress2(text)}
         />
         <Input

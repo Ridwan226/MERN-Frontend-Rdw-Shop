@@ -30,7 +30,7 @@ const paymentCards = [
 
 const Payment = (props) => {
   const order = props.route.params;
-
+  // console.log('Data Routes', order);
   const [select, setSelect] = useState();
   const [card, setCard] = useState();
 
